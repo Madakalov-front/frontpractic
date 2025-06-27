@@ -1,0 +1,5 @@
+@mixin MQmin($breakpoint) {
+    @media (min-width: calc($breakpoint + 1px)) {
+        @content;
+    }
+}

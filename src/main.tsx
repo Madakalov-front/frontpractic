@@ -10,7 +10,8 @@ import { LoginPage } from "@/pages/login/indes";
 import { RegisterPage } from "./pages/register/ui/RegisterPage";
 import { UsersPage } from "@/pages/users";
 import { NewArticle } from "@/pages/newArticle";
-import "./icons/fontAwesome";
+import "./shared/icons/fontAwesome";
+import "./assets/style/index.scss";
 
 createRoot(document.body!).render(
   <StrictMode>

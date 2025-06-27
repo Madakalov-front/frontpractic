@@ -1,0 +1,56 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: inherit;
+    font: inherit;
+    font-size: initial;
+}
+
+html {
+    font-size: toRem(16);
+    @include MQmin($laptop) {
+        font-size: 0.8333vh;
+    }
+}
+
+body {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+    font-family: "Inter", sans-serif;
+}
+
+a,
+img {
+    display: block;
+}
+input,
+button {
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+    &:focus {
+        outline: none;
+    }
+}
+
+button {
+    cursor: pointer;
+}
+
+.container {
+    padding-inline: toRem(20);
+    width: 100%;
+    @include MQmin($tablet-xl) {
+        padding-inline: toRem(85);
+    }
+    @include MQmin($mobile-xl) {
+        padding-inline: toRem(40);
+    }
+}
+
+.svg-inline--fa {
+    width: 100%;
+    height: 100%;
+}

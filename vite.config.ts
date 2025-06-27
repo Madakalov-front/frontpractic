@@ -4,6 +4,29 @@ import path from "path";
 
 export default defineConfig({
   plugins: [react()],
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: (content: string, filename: string) => {
+          if (
+            filename.includes("utils/") ||
+            filename.includes("functions/") ||
+            filename.includes("mixins/") ||
+            filename.includes("variables/") ||
+            filename.includes("fonts/") ||
+            filename.includes("index/")
+          ) {
+            return content;
+          }
+
+          return `@use "@/assets/style/base/global.scss" as *;
+          \n
+          ${content}
+          `;
+        },
+      },
+    },
+  },
   server: {
     open: true,
     proxy: {
