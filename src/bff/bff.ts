@@ -11,13 +11,15 @@ export const server = {
       return {
         error: "Такой пользователь не найден",
         res: null,
+        errorType: "login",
       };
     }
 
-    if (user.password !== authPassword) {
+    if (user[0].password !== authPassword) {
       return {
         error: "Неверный пароль",
         res: null,
+        errorType: "password",
       };
     }
 
@@ -29,8 +31,7 @@ export const server = {
 
   async register({ regLogin, regPassword }: registerType) {
     const user = await getUser(regLogin);
-
-    if (user.login === regLogin) {
+    if (user[0].login === regLogin) {
       return {
         error: "Такой логин занят",
         res: null,

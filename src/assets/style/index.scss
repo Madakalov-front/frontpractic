@@ -10,7 +10,7 @@
 html {
     font-size: toRem(16);
     @include MQmin($laptop) {
-        font-size: 0.8333vh;
+        font-size: 0.8333vw;
     }
 }
 
@@ -19,6 +19,7 @@ body {
     grid-template-rows: auto 1fr auto;
     min-height: 100vh;
     font-family: "Inter", sans-serif;
+    color: var(--dark-100);
 }
 
 a,
@@ -39,6 +40,21 @@ button {
     cursor: pointer;
 }
 
+main {
+    padding-block: toRem(80);
+    @include MQmin($tablet-xl) {
+        padding-block: toRem(120);
+    }
+}
+
+h1 {
+    text-align: center;
+    font-size: toRem(64);
+    font-weight: 700;
+    margin-bottom: toRem(22);
+    line-height: 1.4;
+}
+
 .container {
     padding-inline: toRem(20);
     width: 100%;
@@ -47,6 +63,28 @@ button {
     }
     @include MQmin($mobile-xl) {
         padding-inline: toRem(40);
+    }
+}
+
+.form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: toRem(600);
+    gap: 1rem;
+    padding: 1.5rem;
+    border: toRem(1) solid var(--grey-100);
+    border-radius: toRem(8);
+    background-color: var(--light);
+    margin: 0 auto;
+    overflow: hidden;
+
+    &:has(.spinner) {
+        position: relative;
+    }
+    button {
+        margin-top: toRem(10);
     }
 }
 

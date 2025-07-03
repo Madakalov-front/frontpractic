@@ -1,0 +1,28 @@
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: toRem(18);
+    font-weight: 600;
+    color: var(--blue);
+    border: toRem(1) solid var(--grey-100);
+    padding-block: toRem(15);
+    padding-inline: toRem(25);
+    border-radius: toRem(4);
+    text-transform: uppercase;
+    letter-spacing: toRem(1);
+    transition-property: background-color, border-color;
+    transition-duration: var(--duration);
+    transition-timing-function: var(--ease);
+    &--submit {
+        background-color: var(--yellow);
+        @include hover {
+            background-color: transparent;
+            border-color: var(--yellow);
+        }
+    }
+    &:disabled {
+        pointer-events: none;
+        opacity: 0.6;
+    }
+}

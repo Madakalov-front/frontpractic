@@ -11,7 +11,7 @@ export const addUser = async ({ regLogin, regPassword }: registerType) => {
       login: regLogin,
       password: regPassword,
       registed_at: generateDate(),
-      role_id: 2,
+      role_id: 3,
     }),
   });
 };

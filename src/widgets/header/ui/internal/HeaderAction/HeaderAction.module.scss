@@ -1,14 +1,25 @@
 .header-action {
     display: grid;
-    grid-template-columns: repeat(3, toRem(32));
     row-gap: toRem(12);
     column-gap: toRem(14);
+    grid-template-columns: repeat(4, toRem(32));
+    @include MQmin($mobile-xl) {
+        grid-template-columns: repeat(3, toRem(32));
+    }
+    @include MQmax($mobile-xl) {
+        margin-left: auto;
+    }
     // .header-action__item
     &__item {
         // .header-action__item--login
         &--login {
-            grid-area: 1 / 1 / 2 / 4;
-            place-self: center end;
+            display: flex;
+            align-items: center;
+            column-gap: toRem(10);
+            @include MQmin($mobile-xl) {
+                grid-area: 1 / 1 / 2 / 4;
+                place-self: center end;
+            }
         }
 
         // .header-action__item--registered

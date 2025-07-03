@@ -2,5 +2,5 @@ export const ROLE_ID = {
   ADMIN: 0,
   MODERATOR: 1,
   READER: 2,
-  GUEST: 4,
+  GUEST: 3,
 };

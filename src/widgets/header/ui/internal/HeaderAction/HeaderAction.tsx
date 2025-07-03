@@ -9,7 +9,10 @@ export const HeaderAction = () => {
   return (
     <div className={styles["header-action"]}>
       <HeaderActionItem modClass="login">
-        <LogInIcon />
+        <>
+          <span>user</span>
+          <LogInIcon />
+        </>
       </HeaderActionItem>
       <HeaderActionItem modClass="back-home">
         <BackIcon />
