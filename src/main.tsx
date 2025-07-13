@@ -17,8 +17,8 @@ import "./shared/icons/fontAwesome";
 import "./assets/style/index.scss";
 
 createRoot(document.body!).render(
-  <Provider store={store}>
-    <StrictMode>
+  <StrictMode>
+    <Provider store={store}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
@@ -33,6 +33,6 @@ createRoot(document.body!).render(
           </Route>
         </Routes>
       </BrowserRouter>
-    </StrictMode>
-  </Provider>
+    </Provider>
+  </StrictMode>
 );

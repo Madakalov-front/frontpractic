@@ -1,4 +1,4 @@
-import { server } from "@/bff/bff";
+import { server } from "@/bff";
 import type { FormDataRegister } from "@/feature/registerUser/model/useRegisterForm";
 import type { UseFormReset, UseFormSetError } from "react-hook-form";
 

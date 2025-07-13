@@ -1,3 +1,5 @@
+import { setUser } from "@/app/reducers/user-reducer";
+import { useAppDispatch, useAppSelector } from "@/app/store";
 import {
   onSubmitLogInUser,
   useAuthorizationForm,
@@ -7,7 +9,7 @@ import { Button, Input } from "@/shared";
 import { Spinner } from "@/shared/ui";
 import { SuccessForm } from "@/shared/ui/success-form/SuccessForm";
 import { useEffect, useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 export const Authorization = () => {
   const {
@@ -18,17 +20,27 @@ export const Authorization = () => {
     setError,
   } = useAuthorizationForm();
 
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const { wasLogout, login } = useAppSelector((state) => state.user);
   const [successForm, setSuccessForm] = useState<boolean>(false);
 
   useEffect(() => {
     if (isSubmitSuccessful) {
       setSuccessForm(true);
-      reset();
     }
-  }, [isSubmitSuccessful, reset, errors]);
+    if (successForm) {
+      const timeout = setTimeout(() => {
+        navigate("/");
+      }, 1000);
+      return () => clearTimeout(timeout);
+    }
+  }, [isSubmitSuccessful, reset, errors, navigate, successForm]);
 
-  const onSubmitWrapper = (data: FormDataAuthorization) =>
-    onSubmitLogInUser(data, setError, reset);
+  const onSubmitWrapper = async (data: FormDataAuthorization) => {
+    const user = await onSubmitLogInUser(data, setError);
+    dispatch(setUser(user));
+  };
 
   return (
     <form
@@ -47,13 +59,19 @@ export const Authorization = () => {
         name="password"
         errorText={errors.password?.message}
       />
-      <Button name="войти" type="submit" disabled={false} variant="submit" />
+      <Button
+        name="войти"
+        type="submit"
+        disabled={false}
+        variant="submit"
+        size="normal"
+      />
       <div className="create-acc">
         <span>Нет аккаунта? - </span>
         <Link to={"/register"}>создать</Link>
       </div>
       {isSubmitting && <Spinner />}
-      {successForm && <SuccessForm text="UserName, вы авторизованы!" />}
+      {wasLogout && <SuccessForm text={`${login}, вы авторизованы!`} />}
     </form>
   );
 };

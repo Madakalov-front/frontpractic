@@ -13,12 +13,22 @@
     &__item {
         // .header-action__item--login
         &--login {
+            height: toRem(35);
             display: flex;
             align-items: center;
             column-gap: toRem(10);
             @include MQmin($mobile-xl) {
                 grid-area: 1 / 1 / 2 / 4;
                 place-self: center end;
+            }
+            svg {
+                width: fit-content;
+                height: toRem(24);
+                transition: transform var(--duration) var(--ease);
+                color: var(--orange);
+                @include hover {
+                    transform: scale(1.1);
+                }
             }
         }
 

@@ -5,8 +5,9 @@ type ButtonProps = {
   type: "button" | "submit" | "reset" | undefined;
   name: string;
   variant?: "default" | "submit";
+  size?: "small" | "normal";
   onClick?: () => void;
-  disabled: boolean;
+  disabled?: boolean;
 };
 
 export const Button = ({
@@ -15,11 +16,14 @@ export const Button = ({
   variant = "default",
   onClick,
   disabled = false,
+  size = "small",
 }: ButtonProps) => {
+  const variantClass = variant && styles[`btn--${variant}`];
+  const sizeClass = size && styles[`btn--${size}`];
   return (
     <button
       type={type}
-      className={clsx(styles.btn, variant && styles[`btn--${variant}`])}
+      className={clsx(styles.btn, variantClass, sizeClass)}
       onClick={onClick}
       disabled={disabled}
     >

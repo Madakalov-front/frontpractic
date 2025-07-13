@@ -1,8 +1,6 @@
-import { removeComment } from "@/bff/session";
 import type { sessionInterface } from "@/bff/types";
-import { ROLE_ID } from "@/shared";
 
-export const createSession = (roleID: number) => {
+export const addSession = () => {
   const session: sessionInterface = {
     logOut(): void {
       (Object.keys(session) as (keyof typeof session)[]).forEach(
@@ -11,22 +9,22 @@ export const createSession = (roleID: number) => {
     },
   };
 
-  switch (roleID) {
-    case ROLE_ID.ADMIN: {
-      session.removeComment = removeComment;
-      break;
-    }
-    case ROLE_ID.MODERATOR: {
-      session.removeComment = removeComment;
-      break;
-    }
-    case ROLE_ID.READER: {
-      break;
-    }
-    default: {
-      break;
-    }
-  }
+  // switch (role_id) {
+  //   case ROLE_ID.ADMIN: {
+  //     session.removeComment = removeComment;
+  //     break;
+  //   }
+  //   case ROLE_ID.MODERATOR: {
+  //     session.removeComment = removeComment;
+  //     break;
+  //   }
+  //   case ROLE_ID.READER: {
+  //     break;
+  //   }
+  //   default: {
+  //     break;
+  //   }
+  // }
 
   return {
     removeComment(): void {

@@ -61,6 +61,7 @@ export const RegisterUser = () => {
             type="submit"
             disabled={Object.keys(errors).length > 0 || isSubmitting}
             variant="submit"
+            size="normal"
           />
           {isSubmitting && <Spinner />}
           {successForm && <SuccessForm text="Регистрация прошла успешно!" />}
