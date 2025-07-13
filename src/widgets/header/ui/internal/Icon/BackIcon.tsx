@@ -1,4 +1,4 @@
-import { faHouseCrack } from "@fortawesome/free-solid-svg-icons";
+import { faCircleChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import clsx from "clsx";
 import styles from "../../../../../shared/ui/IconLink/IconLink.module.scss";
@@ -13,7 +13,7 @@ export const BackIcon = () => {
       onClick={handleClick}
       className={clsx(styles["link-icon"], styles["link-icon--back-link"])}
     >
-      <FontAwesomeIcon icon={faHouseCrack} />
+      <FontAwesomeIcon icon={faCircleChevronLeft} />
     </button>
   );
 };

@@ -3,3 +3,8 @@
         @content;
     }
 }
+@mixin MQmax($breakpoint) {
+    @media (max-width: calc($breakpoint)) {
+        @content;
+    }
+}

@@ -8,7 +8,8 @@ export const Logo = () => {
         <img src="./img/icon/logo.svg" alt="логотип" />
       </Link>
       <div className={styles.logo__content}>
-        @Madakalov <br /> FrontendDeveloper
+        {/* @Madakalov <br /> FrontendDeveloper */}
+        Какое-то описание <br /> шапки
       </div>
     </div>
   );
