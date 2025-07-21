@@ -8,9 +8,11 @@ import { useAppSelector } from "@/app/store";
 
 import styles from "./HeaderAction.module.scss";
 import { ROLE_ID } from "@/shared/constants";
+import { setFirstSymUpperCase } from "@/shared/utils";
 
 export const HeaderAction = () => {
   const { login, role_id } = useAppSelector((state) => state.user);
+  const loginUpdate = login && setFirstSymUpperCase(login);
 
   return (
     <div className={styles["header-action"]}>
@@ -19,7 +21,7 @@ export const HeaderAction = () => {
           <LogInButton />
         ) : (
           <>
-            <span>{login}</span>
+            {loginUpdate && <span>{loginUpdate}</span>}
             <LogOutButton />
           </>
         )}

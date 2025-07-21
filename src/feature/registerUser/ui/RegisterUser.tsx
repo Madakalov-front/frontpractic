@@ -17,11 +17,13 @@ export const RegisterUser = () => {
     formState: { errors, isSubmitting, isSubmitSuccessful },
     reset,
     setError,
+    setFocus,
   } = useRegisterForm();
 
   const [successForm, setSuccessForm] = useState<boolean>(false);
 
   useEffect(() => {
+    setFocus("username");
     if (isSubmitSuccessful) {
       setSuccessForm(true);
       reset();
@@ -43,17 +45,20 @@ export const RegisterUser = () => {
             type="text"
             name="username"
             errorText={errors.username?.message}
+            placeholder="Придумайте логин"
           />
           <Input
             {...register("password")}
             type="password"
             name="password"
+            placeholder="Создайте пароль"
             errorText={errors.password?.message}
           />
           <Input
             {...register("confirmPassword")}
             type="password"
             name="confirmPassword"
+            placeholder="Повторите пароль"
             errorText={errors.confirmPassword?.message}
           />
           <Button

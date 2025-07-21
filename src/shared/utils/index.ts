@@ -1,0 +1,1 @@
+export { setFirstSymUpperCase } from "./setFirstSymUpperCase";

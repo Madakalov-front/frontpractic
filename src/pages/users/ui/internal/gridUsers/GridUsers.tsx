@@ -1,7 +1,8 @@
-import { SelectRole } from "@/entities/selectRole";
 import { ROLE_ID, ROLE_NAME } from "@/shared/constants";
 import styles from "./GridUsers.module.scss";
 import { useLoadingDataUsers } from "./useLoadingDataUsers";
+import { UpdateRole } from "@/feature/updateRole/ui/UpdateRole";
+import { DeleteUserButton } from "@/shared/ui";
 
 export const GridUsers = () => {
   const { data, status, error } = useLoadingDataUsers();
@@ -25,11 +26,18 @@ export const GridUsers = () => {
             </span>
             {item.role_id !== null ? (
               item.role_id === ROLE_ID.ADMIN ? (
-                <span className={styles["grid-users__admin"]}>
+                <span className="react-select--fake">
                   {ROLE_NAME[item.role_id]}
                 </span>
               ) : (
-                <SelectRole role_id={item.role_id} />
+                <>
+                  <UpdateRole
+                    style={styles["grid-users__role"]}
+                    role_id={item.role_id}
+                    id={item.id}
+                  />
+                  <DeleteUserButton id={item.id} />
+                </>
               )
             ) : null}
           </div>

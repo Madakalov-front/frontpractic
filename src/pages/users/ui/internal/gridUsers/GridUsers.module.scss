@@ -6,7 +6,8 @@
     &__info,
     &__item {
         display: grid;
-        grid-template-columns: 2fr 2fr 1fr;
+        grid-template-columns: 2fr 2fr 1fr auto;
+        column-gap: toRem(10);
         align-items: center;
         padding: toRem(12) toRem(24);
         border-bottom: toRem(1) solid #ddd;
@@ -47,5 +48,13 @@
     &__date {
         color: #666;
         font-size: 0.9rem;
+    }
+
+    // .grid-users__role
+
+    &__role {
+        display: flex;
+        align-items: center;
+        column-gap: toRem(12);
     }
 }

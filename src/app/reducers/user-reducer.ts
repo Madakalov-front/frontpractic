@@ -21,15 +21,23 @@ const initialUserState: InitialUserState = {
   registed_at: "",
 };
 
+const localUser = localStorage.getItem("user");
+
+const initialState: InitialUserState =
+  (localUser && JSON.parse(localUser)) ?? initialUserState;
+
 const userSlice = createSlice({
   name: "user",
-  initialState: initialUserState,
+  initialState,
   reducers: {
     setUser: (state, action: PayloadAction<UserType>) => {
       return {
         ...state,
         ...action.payload,
       };
+    },
+    updateRoleUser: (state, action: PayloadAction<number>) => {
+      state.role_id = action.payload;
     },
     logOut: (_, action: PayloadAction<string>) => {
       server.logout(action.payload);
@@ -38,5 +46,5 @@ const userSlice = createSlice({
   },
 });
 
-export const { setUser, logOut } = userSlice.actions;
+export const { setUser, logOut, updateRoleUser } = userSlice.actions;
 export const userReducer = userSlice.reducer;

@@ -1,5 +1,6 @@
 import { getUsers } from "@/app/async-thunk/get-users";
-import { createSlice } from "@reduxjs/toolkit";
+import type { ErrorResponse, StatusResponse } from "@/shared/types";
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
 type InitialUsersState = {
   data:
@@ -10,29 +11,41 @@ type InitialUsersState = {
         login: string | null;
       }[]
     | [];
-  status: "idle" | "loading" | "succeeded" | "failed";
-  error: string | null | undefined;
+  status: StatusResponse;
+  error: ErrorResponse;
 };
+
+interface IdAndRolePayload {
+  id: number;
+  role_id: number;
+}
 
 const initialState: InitialUsersState = {
   data: [],
   status: "idle",
-  error: null,
+  error: "",
 };
 
 const usersSlice = createSlice({
   name: "users",
   initialState,
   reducers: {
-    test: (state) => {
-      return state;
+    updateRoleUsers: (state, action: PayloadAction<IdAndRolePayload>) => {
+      const user = state.data.find((user) => user.id === action.payload.id);
+      if (user) {
+        user.role_id = action.payload.role_id;
+      }
+    },
+    removeUser: (state, action: PayloadAction<number>) => {
+      console.log(action.payload);
+      state.data = state.data.filter((item) => item.id !== action.payload);
     },
   },
   extraReducers: (builder) => {
     builder
       .addCase(getUsers.pending, (state) => {
         state.status = "loading";
-        state.error = null;
+        state.error = undefined;
       })
       .addCase(getUsers.fulfilled, (state, action) => {
         state.status = "succeeded";
@@ -45,5 +58,5 @@ const usersSlice = createSlice({
   },
 });
 
-export const { test } = usersSlice.actions;
+export const { updateRoleUsers, removeUser } = usersSlice.actions;
 export const usersReducer = usersSlice.reducer;

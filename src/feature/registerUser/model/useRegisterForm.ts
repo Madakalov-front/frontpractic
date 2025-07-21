@@ -7,8 +7,8 @@ const schemaRegister = z
     username: z
       .string()
       .nonempty({ message: "Имя обязательно" })
-      .min(3, { message: "Имя слишком короткое" })
-      .max(20, { message: "Имя слишком длинное" }),
+      .min(3, { message: "Не менее 3-х символов" })
+      .max(20, { message: "Не более 20-ти символов" }),
     password: z
       .string()
       .nonempty({ message: "Пароль обязателен" })

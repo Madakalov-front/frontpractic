@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  paginationPostReducer,
   postReducer,
   postsReducer,
   userReducer,
@@ -13,6 +14,7 @@ export const store = configureStore({
     posts: postsReducer,
     user: userReducer,
     users: usersReducer,
+    paginationPost: paginationPostReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
   devTools: true,
@@ -23,7 +25,3 @@ export type AppDispatch = typeof store.dispatch;
 
 export const useAppDispatch = useDispatch.withTypes<AppDispatch>();
 export const useAppSelector = useSelector.withTypes<RootState>();
-
-store.subscribe(() => {
-  console.log("Store updated:", store.getState());
-});

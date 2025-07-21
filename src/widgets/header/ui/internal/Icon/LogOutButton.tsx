@@ -11,6 +11,7 @@ export const LogOutButton = () => {
   const handleClick = () => {
     if (session) {
       dispath(logOut(session));
+      localStorage.removeItem("user");
     }
     navigate("/");
   };
